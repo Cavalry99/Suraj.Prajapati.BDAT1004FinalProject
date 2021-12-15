@@ -1,0 +1,47 @@
+  <html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+		function myFunc(vars) {
+			return vars
+		}
+		myVar = myFunc({{graph|tojson}})
+		google.charts.load('current', {
+		  packages: ['corechart', 'bar']
+		});
+		google.charts.setOnLoadCallback(drawBasic);
+
+		function drawBasic() {
+
+		  var data = google.visualization.arrayToDataTable(myVar);
+
+		  var options = {
+			title: 'Sales of 2021 Year',
+			chartArea: {
+			  width: '50%'
+			},
+			hAxis: {
+			  title: 'Sales',
+			  minValue: 0
+			},
+			vAxis: {
+				textStyle : {
+            fontSize: 7 // or the number you want
+			},
+			  title: 'Model'
+			}
+		  };
+
+		  var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+		  chart.draw(data, options);
+		}
+
+    </script>
+  </head>
+  <body>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <div id="chart_div"></div>
+  </body>
+</html>
+
